@@ -316,7 +316,7 @@ tailwind.config = { theme: { extend: {
         </dl>
         <p id="calc-detalhe" class="text-xs text-slate-300 mt-3">Informe origem e destino</p>
         <p id="calc-sinal" class="text-sm font-semibold text-gold mt-1.5 min-h-[1.25rem]"></p>
-        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00). Deslocamento e retorno: grátis até 10 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Sinal de 30% por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
+        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,90/km (mínimo R$ 50,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Sinal de 30% por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
       </div>
 
       <p id="ag-err" class="text-sm text-red-300 hidden" role="alert"></p>
@@ -371,7 +371,7 @@ tailwind.config = { theme: { extend: {
         <circle class="cf-ring" cx="32" cy="32" r="28" stroke="#D4A74F" stroke-width="3" stroke-linecap="round" transform="rotate(-90 32 32)"/>
         <path class="cf-tick" d="M20 33 l8 8 l16 -17" stroke="#D4A74F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <h2 id="cf-title" tabindex="-1" class="text-2xl font-extrabold text-white mt-4 outline-none">Solicitação preparada</h2>
+      <h2 id="cf-title" tabindex="-1" class="text-2xl font-extrabold text-white mt-4 outline-none">Solicitação pronta</h2>
       <p id="cf-sub" class="text-sm text-slate-300 mt-2 leading-snug"></p>
 
       <button type="button" id="cf-proto" class="mt-4 inline-flex items-center gap-2.5 rounded-full border border-gold/50 bg-gold/10 px-4 py-2 text-sm" aria-label="Copiar protocolo">
@@ -399,9 +399,11 @@ tailwind.config = { theme: { extend: {
 
       <ol id="cf-steps" class="mt-5 text-left space-y-3"></ol>
 
-      <button type="button" id="cf-reopen" class="btn-wa mt-6 w-full rounded-xl py-4 font-bold text-[15px] flex items-center justify-center gap-2.5">
-        <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>Abrir WhatsApp novamente
-      </button>
+      <div class="sticky bottom-2 z-10 mt-6 rounded-2xl bg-black/80 backdrop-blur p-1.5">
+        <button type="button" id="cf-reopen" class="btn-wa w-full rounded-xl py-4 font-bold text-[15px] flex items-center justify-center gap-2.5">
+          <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>Enviar solicitação no WhatsApp
+        </button>
+      </div>
       <button type="button" id="cf-img" class="mt-3 w-full rounded-xl py-3.5 text-sm font-semibold border border-gold/60 text-gold bg-gold/10 hover:bg-gold/15 flex items-center justify-center gap-2">
         <i class="fa-regular fa-image" aria-hidden="true"></i>Compartilhar resumo em imagem
       </button>
@@ -418,13 +420,13 @@ tailwind.config = { theme: { extend: {
   // ====== CONFIGURAÇÃO ======
   // Troque pelo número real, com DDI + DDD, só dígitos (ex.: 5527999998888)
   const WHATSAPP_NUMBER = "5527996343275";
-  const TARIFA_KM = 2.80;
+  const TARIFA_KM = 2.90;
   const VALOR_MINIMO = 50.00;
   const ANTECEDENCIA_H = 2;          // antecedência mínima para agendar (horas)
   // Ponto-base: de onde o carro sai/volta. Troque pelas coordenadas reais
   // (no Google Maps: toque e segure no local e copie latitude, longitude).
   const BASE_LAT = -20.3297, BASE_LON = -40.2925;   // padrão: centro de Vila Velha/ES (ajuste para o seu ponto exato)
-  const RAIO_GRATIS_KM = 10;         // deslocamento e retorno grátis até esse raio
+  const RAIO_GRATIS_KM = 8;          // deslocamento e retorno grátis até esse raio
   const TARIFA_DESLOC_KM = 1.40;     // R$ por km além do raio
   const RETORNO_PERC = 0.5;          // % do retorno vazio cobrado (além do raio)
   const LIMITE_TOTAL_KM = 200;       // acima disso: "sob consulta" (autonomia/recarga)
@@ -556,10 +558,9 @@ tailwind.config = { theme: { extend: {
     if (nowGps) ln.push("", "*LOCALIZAÇÃO NO MAPS*", `https://maps.google.com/?q=${nowGps.la.toFixed(6)},${nowGps.lo.toFixed(6)}`);
     ln.push("", "Há disponibilidade no momento?");
     const msgN = ln.join("\n");
-    openWA(msgN);
     showConfirm({
-      proto: protoN, msg: msgN, onReset: resetNow,
-      sub: "Guarde o protocolo: ele também vai na mensagem para o motorista.",
+      kind: "now", proto: protoN, msg: msgN, onReset: resetNow,
+      sub: "Envie a consulta no WhatsApp para o motorista verificar o encaixe. Guarde o protocolo.",
       rows: [
         ["Passageiro", $("now-nome").value.trim()],
         ["Origem", $("now-origem").value.trim()],
@@ -567,7 +568,7 @@ tailwind.config = { theme: { extend: {
       ],
       nota: "Atendimento imediato sujeito a encaixe e disponibilidade do motorista. Para garantir o horário, agende com 2 horas de antecedência.",
       steps: [
-        ["Envie a mensagem no WhatsApp", "Ela já vai pronta. Se não abriu, use o botão abaixo."],
+        ["Envie a consulta no WhatsApp", "Toque no botão verde para abrir a conversa com tudo pronto."],
         ["Aguarde o retorno", "O motorista informa se há encaixe e disponibilidade agora."],
         ["Sem garantia de atendimento", "O imediato depende da agenda. Para garantir, agende com 2 horas de antecedência."]
       ]
@@ -700,7 +701,7 @@ tailwind.config = { theme: { extend: {
     if (route.ok && !sobConsulta()) {
       const p = calcPreco();
       const minimo = route.km * TARIFA_KM < VALOR_MINIMO, nome = espera.on ? "Ida" : "Corrida";
-      $("t-corrida").textContent = minimo ? `${nome} (valor mínimo)` : `${nome} (${n1(route.km)} km × R$ 2,80)`;
+      $("t-corrida").textContent = minimo ? `${nome} (valor mínimo)` : `${nome} (${n1(route.km)} km × R$ 2,90)`;
       $("r-volta").classList.toggle("hidden", !espera.on); $("r-esp").classList.toggle("hidden", !espera.on);
       if (espera.on) {
         $("t-volta").textContent = "Volta (mesmo valor da ida)"; $("v-volta").textContent = brl(p.volta);
@@ -897,10 +898,9 @@ tailwind.config = { theme: { extend: {
       linhas.push("", "*ROTA NO MAPS*", `https://www.google.com/maps/dir/?api=1&origin=${o.lat.toFixed(6)},${o.lon.toFixed(6)}&destination=${dst.lat.toFixed(6)},${dst.lon.toFixed(6)}&travelmode=driving`);
     }
     const msg = linhas.join("\n");
-    openWA(msg);
     showConfirm({
-      proto, msg, onReset: resetSched,
-      sub: "Guarde o protocolo: ele também vai na mensagem para o motorista.",
+      kind: "sched", proto, msg, onReset: resetSched,
+      sub: p ? "Para reservar o seu horário: pague o sinal e envie a solicitação no WhatsApp. Guarde o protocolo." : "Envie a solicitação no WhatsApp. O motorista confirma valor e sinal na conversa.",
       rows: [
         ["Passageiro", $("ag-nome").value.trim()],
         ["Data e hora", `${d}/${m}/${y} (${dia}) às ${$("ag-hora").value}`],
@@ -924,8 +924,11 @@ tailwind.config = { theme: { extend: {
       total: p ? brl2(p.total) : route.ok && sobConsulta() ? "Sob consulta" : "A confirmar",
       nota: "Valor estimado, confirmado pelo motorista. A reserva só é garantida após a confirmação. Sinal devolvido em cancelamentos até 24 horas antes; depois disso fica retido, pois reserva o horário. Rotas com dados © colaboradores do OpenStreetMap.",
       steps: [
-        ["Envie a mensagem no WhatsApp", "Ela já vai pronta. Se não abriu, use o botão abaixo."],
-        p ? ["Pague o sinal de 30% por Pix", "Copie o código acima e envie o comprovante na conversa."] : ["Aguarde a confirmação", "O motorista confirma horário, valor final e detalhes."],
+        ...(p
+          ? [["Pague o sinal de 30% por Pix", "Copie o código acima e pague no app do seu banco."],
+             ["Envie a solicitação no WhatsApp", "Toque no botão verde e anexe o comprovante na conversa."]]
+          : [["Envie a solicitação no WhatsApp", "Toque no botão verde para abrir a conversa com tudo pronto."],
+             ["Aguarde a confirmação", "O motorista confirma horário, valor final e o sinal."]]),
         ["Reserva garantida", "Vale somente após a confirmação do motorista."]
       ]
     });
@@ -946,6 +949,9 @@ tailwind.config = { theme: { extend: {
   const CF_HINT = "Para o motorista receber a imagem, escolha o WhatsApp e a conversa da Trip Confort (ela aparece no topo).";
   function showConfirm(o) {
     cfMsg = o.msg; cfReset = o.onReset; cfFocus = document.activeElement;
+    if (!o.restored) {
+      try { const { onReset, ...save } = o; sessionStorage.setItem("tcPend", JSON.stringify({ ...save, ts: Date.now() })); } catch (e) {}
+    }
     cfData = { proto: o.proto, rows: o.rows.filter(([k]) => !(o.total && k === "Estimativa")), valores: o.valores || null, total: o.total || null, nota: o.nota || "" };
     cfFile = null; $("cf-img-st").textContent = CF_HINT;
     const tk = ++cfTok;
@@ -983,6 +989,7 @@ tailwind.config = { theme: { extend: {
     $("cf-title").focus();
   }
   function hideConfirm(reset) {
+    try { sessionStorage.removeItem("tcPend"); } catch (e) {}
     $("confirm").classList.add("hidden");
     document.body.style.overflow = "";
     if (reset && cfReset) cfReset();
@@ -1185,6 +1192,16 @@ tailwind.config = { theme: { extend: {
     document.querySelectorAll("#form-now [aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
     $("now-err").classList.add("hidden");
   }
+
+  // ---- Retoma a solicitação se a aba recarregar (ex.: ao voltar do app do banco) ----
+  try {
+    const raw = sessionStorage.getItem("tcPend");
+    if (raw) {
+      const sv = JSON.parse(raw);
+      if (Date.now() - sv.ts < 3 * 3600e3) showConfirm({ ...sv, restored: true, onReset: sv.kind === "now" ? resetNow : resetSched });
+      else sessionStorage.removeItem("tcPend");
+    }
+  } catch (e) {}
 
   // ---- Revelação ao rolar ----
   const reveals = document.querySelectorAll(".reveal");
