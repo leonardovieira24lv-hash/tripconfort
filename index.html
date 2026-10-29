@@ -193,6 +193,18 @@ tailwind.config = { theme: { extend: {
     transform: translateY(115%); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   .sticky-cta.show { transform: none; }
   .sticky-cta .btn-gold { pointer-events: auto; width: 100%; max-width: 26rem; }
+
+  .route-chip { display: flex; flex-direction: column; align-items: flex-start; gap: .15rem; padding: .9rem; border-radius: 1rem; text-align: left; color: #fff;
+    border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); transition: background .2s, border-color .2s, transform .12s; }
+  .route-chip:hover { border-color: rgba(212,167,79,.5); background: rgba(212,167,79,.06); } .route-chip:active { transform: scale(.97); }
+  .route-chip i { color: #D4A74F; margin-bottom: .35rem; font-size: 1.05rem; }
+  .route-chip b { font-size: .86rem; } .route-chip small { font-size: .7rem; color: #94A3B8; }
+  .faq { border: 1px solid rgba(255,255,255,.1); border-radius: 1rem; background: rgba(255,255,255,.03); padding: 0 1rem; }
+  .faq summary { cursor: pointer; list-style: none; padding: .95rem 0; font-weight: 600; font-size: .92rem; color: #fff; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: #D4A74F; font-size: 1.25rem; line-height: 1; }
+  .faq[open] summary::after { content: "\2013"; }
+  .faq p { margin: 0 0 1rem; font-size: .85rem; color: #94A3B8; line-height: 1.55; }
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}#splash{display:none}</style></noscript>
 </head>
@@ -230,7 +242,7 @@ tailwind.config = { theme: { extend: {
 
 <!-- CHAMADA PRINCIPAL -->
 <section class="hero-copy rise" style="--d:.25s">
-  <p class="hc-eyebrow">TRANSPORTE EXECUTIVO 100% ELÉTRICO</p>
+  <p class="hc-eyebrow">TRANSFER PREMIUM 100% ELÉTRICO</p>
   <h2 class="hc-title">Chegue com <span class="hc-shine">elegância.</span><br>Viaje em silêncio.</h2>
   <p class="hc-sub">Transfers, aeroporto e viagens agendadas, com pontualidade, conforto e o valor calculado na hora.</p>
   <div class="hc-cta">
@@ -251,6 +263,7 @@ tailwind.config = { theme: { extend: {
   <div class="flex flex-wrap justify-center gap-2 rise" style="--d:.35s" aria-label="Destaques do serviço">
     <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-slate-200 flex items-center gap-2"><i class="fa-regular fa-snowflake text-slate-300" aria-hidden="true"></i>Ar-Condicionado a Bordo</span>
     <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-gold flex items-center gap-2"><i class="fa-solid fa-clock" aria-hidden="true"></i>Pontualidade &amp; Conforto VIP</span>
+    <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-suitcase-rolling text-slate-300" aria-hidden="true"></i>Até 3 passageiros e 2 malas</span>
   </div>
   <div class="mt-3 flex items-center justify-center gap-4 text-[11px] text-slate-400 rise" style="--d:.45s">
     <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-gold" aria-hidden="true"></i>Viagem segura</span>
@@ -266,7 +279,7 @@ tailwind.config = { theme: { extend: {
     <ol class="steps-grid">
       <li><span class="step-n">1</span><b>Informe a rota</b><small>origem e destino</small></li>
       <li><span class="step-n">2</span><b>Veja o valor</b><small>calculado na hora</small></li>
-      <li><span class="step-n">3</span><b>Reserve</b><small>sinal de 30% por Pix</small></li>
+      <li><span class="step-n">3</span><b>Reserve</b><small>sinal por Pix</small></li>
     </ol>
   </section>
 
@@ -363,7 +376,7 @@ tailwind.config = { theme: { extend: {
             <option value="2.5">2 h 30 min</option><option value="3">3 horas</option><option value="3.5">3 h 30 min</option>
             <option value="4">4 horas</option><option value="99">Mais de 4 horas (sob consulta)</option>
           </select>
-          <p class="text-xs text-slate-400 mt-2 leading-snug">Espera mínima de 1 hora, a R$ 40,00 por hora (frações de 30 min). A volta tem o mesmo valor da ida. Atrasos de até 15 min além do combinado não são cobrados.</p>
+          <p class="text-xs text-slate-400 mt-2 leading-snug">Espera mínima de 1 hora, a R$ 50,00 por hora (frações de 30 min). A volta tem o mesmo valor da ida. Atrasos de até 15 min além do combinado não são cobrados.</p>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
@@ -397,12 +410,14 @@ tailwind.config = { theme: { extend: {
           <div class="flex justify-between gap-3"><dt id="t-corrida" class="text-slate-400">Corrida</dt><dd id="v-corrida" class="text-slate-200 text-right">—</dd></div>
           <div id="r-volta" class="hidden"><div class="flex justify-between gap-3"><dt id="t-volta" class="text-slate-400">Volta</dt><dd id="v-volta" class="text-slate-200 text-right">—</dd></div></div>
           <div id="r-esp" class="hidden"><div class="flex justify-between gap-3"><dt id="t-esp" class="text-slate-400">Espera</dt><dd id="v-esp" class="text-slate-200 text-right">—</dd></div></div>
+          <div id="r-adic" class="hidden"><div class="flex justify-between gap-3"><dt id="t-adic" class="text-slate-400">Adicional</dt><dd id="v-adic" class="text-slate-200 text-right">—</dd></div></div>
+          <div id="r-rec" class="hidden"><div class="flex justify-between gap-3"><dt id="t-rec" class="text-slate-400">Recarga (viagem longa)</dt><dd id="v-rec" class="text-slate-200 text-right">—</dd></div></div>
           <div class="flex justify-between gap-3"><dt id="t-desl" class="text-slate-400">Deslocamento até o embarque</dt><dd id="v-desl" class="text-slate-200 text-right">—</dd></div>
           <div class="flex justify-between gap-3"><dt id="t-ret" class="text-slate-400">Retorno</dt><dd id="v-ret" class="text-slate-200 text-right">—</dd></div>
         </dl>
         <p id="calc-detalhe" class="text-xs text-slate-300 mt-3">Informe origem e destino</p>
         <p id="calc-sinal" class="text-sm font-semibold text-gold mt-1.5 min-h-[1.25rem]"></p>
-        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Sinal de 30% por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
+        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00; aeroporto, R$ 70,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Acréscimo de 20% das 22h às 6h e de 25% em datas especiais. Viagens acima de 120 km: taxa de recarga de R$ 30,00. Sinal de 30% (mínimo R$ 20,00) por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
       </div>
 
       <p id="ag-err" class="text-sm text-red-300 hidden" role="alert"></p>
@@ -410,6 +425,28 @@ tailwind.config = { theme: { extend: {
         <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>Confirmar e Agendar no WhatsApp
       </button>
     </form>
+  </section>
+
+  <!-- ROTAS E SERVIÇOS -->
+  <section class="mt-10 reveal" aria-labelledby="rotas-title">
+    <h2 id="rotas-title" class="font-display text-xl font-bold text-white">Rotas mais procuradas</h2>
+    <p class="text-sm text-slate-400 mt-1">Toque para preencher o destino e ver o valor na hora.</p>
+    <div class="mt-4 grid grid-cols-2 gap-2.5">
+      <button type="button" class="route-chip" data-dest="Aeroporto de Vitória, Vitória, ES"><i class="fa-solid fa-plane-departure" aria-hidden="true"></i><b>Aeroporto (VIX)</b><small id="chip-aero">valor na hora</small></button>
+      <button type="button" class="route-chip" data-dest="Guarapari, ES"><i class="fa-solid fa-umbrella-beach" aria-hidden="true"></i><b>Guarapari</b><small>valor na hora</small></button>
+      <button type="button" class="route-chip" data-dest="Centro, Vitória, ES"><i class="fa-solid fa-city" aria-hidden="true"></i><b>Vitória (Centro)</b><small>valor na hora</small></button>
+      <button type="button" class="route-chip" data-dest="Serra, ES"><i class="fa-solid fa-road" aria-hidden="true"></i><b>Serra</b><small>valor na hora</small></button>
+    </div>
+    <div class="glass rounded-2xl p-4 mt-4">
+      <div class="flex items-start gap-4">
+        <div class="h-12 w-12 shrink-0 rounded-xl bg-gold/10 text-gold border border-gold/30 flex items-center justify-center text-xl"><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
+        <div>
+          <h3 class="font-bold text-white">Motorista à disposição</h3>
+          <p class="text-sm text-slate-400 mt-1 leading-snug">Reuniões, eventos e passeios, com o carro e o motorista só para você. <strong class="text-white" id="dispo-txt">R$ 60 por hora, mínimo de 3 horas.</strong></p>
+        </div>
+      </div>
+      <button type="button" id="btn-dispo" class="btn-ghost w-full justify-center mt-3"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Consultar no WhatsApp</button>
+    </div>
   </section>
 
   <!-- DIFERENCIAIS -->
@@ -432,6 +469,21 @@ tailwind.config = { theme: { extend: {
       </article>
     </div>
   </section>
+
+  <!-- PERGUNTAS FREQUENTES -->
+  <section class="mt-10 reveal" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="font-display text-xl font-bold text-white">Perguntas frequentes</h2>
+    <div class="mt-4 space-y-2.5">
+      <details class="faq"><summary>Como é calculado o valor?</summary><p>O site traça a rota no mapa: R$ 2,80 por km, com valor mínimo de R$ 50,00 (R$ 70,00 em corridas de aeroporto). Deslocamento e retorno são grátis até 8 km do nosso ponto-base. À noite e em datas especiais há acréscimo. O valor final é confirmado pelo motorista.</p></details>
+      <details class="faq"><summary>Como faço a reserva?</summary><p>Informe origem, destino, data e horário e confira o valor. Depois pague o sinal por Pix e envie o comprovante no WhatsApp. A reserva só é garantida após a confirmação do motorista.</p></details>
+      <details class="faq"><summary>Como funciona o sinal e o cancelamento?</summary><p>O sinal é de 30% do valor (mínimo de R$ 20,00). Cancelando com até 24 horas de antecedência, ele é devolvido. Depois disso fica retido, porque o seu horário fica reservado e deixa de estar disponível para outra pessoa.</p></details>
+      <details class="faq"><summary>Com quanta antecedência devo agendar?</summary><p>No mínimo 2 horas, para deixarmos o veículo elétrico carregado e preparado. Para atendimento imediato, use a aba Consultar Encaixe, sujeita à disponibilidade.</p></details>
+      <details class="faq"><summary>O motorista pode esperar e voltar comigo?</summary><p>Sim, na opção de ida e volta com espera: espera mínima de 1 hora, a R$ 50,00 por hora, e a volta tem o mesmo valor da ida. Esperas acima de 4 horas são sob consulta.</p></details>
+      <details class="faq"><summary>Quantos passageiros e malas cabem?</summary><p>O BYD Dolphin GS leva até 3 passageiros e 2 malas com conforto. Se tiver mais bagagem ou criança, avise nas observações.</p></details>
+      <details class="faq"><summary>Quais são as formas de pagamento?</summary><p>O sinal é pago por Pix. O restante pode ser pago por Pix, cartão de crédito ou débito.</p></details>
+      <details class="faq"><summary>Vocês fazem viagens longas?</summary><p>Sim, com o valor calculado automaticamente. Em viagens acima de 120 km há uma taxa de recarga de R$ 30,00.</p></details>
+    </div>
+  </section>
 </main>
 
 <!-- RODAPÉ -->
@@ -442,7 +494,8 @@ tailwind.config = { theme: { extend: {
       <i class="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>Falar com a Trip Confort
     </a>
   </div>
-  <p class="text-center text-xs text-slate-500 mt-6">&copy; <span id="ano"></span> Trip Confort. Todos os direitos reservados.</p>
+  <p class="text-center text-xs text-slate-400 mt-4 leading-snug">Saída de Vila Velha, ES. Atendemos a Grande Vitória e viagens intermunicipais sob agendamento.</p>
+  <p class="text-center text-xs text-slate-500 mt-4">&copy; <span id="ano"></span> Trip Confort. Todos os direitos reservados.</p>
 </footer>
 
 <div id="stickycta" class="sticky-cta" aria-hidden="true"><a href="#agendar" class="btn-gold" tabindex="-1">Agendar minha viagem</a></div>
@@ -473,7 +526,7 @@ tailwind.config = { theme: { extend: {
 
       <div id="cf-pix" class="hidden mt-5 text-left rounded-2xl border border-gold/50 bg-gold/10 p-4">
         <p class="text-xs font-bold tracking-wider text-gold">SINAL PARA GARANTIR A RESERVA</p>
-        <p class="mt-1.5 text-sm text-slate-200">Sinal de 30%: <strong id="cf-sinal" class="text-white text-xl"></strong></p>
+        <p class="mt-1.5 text-sm text-slate-200">Sinal para reservar: <strong id="cf-sinal" class="text-white text-xl"></strong></p>
         <p class="text-xs text-slate-400 mt-1">Chave Pix (CNPJ): <span class="text-slate-200">49.285.098/0001-60</span></p>
         <button type="button" id="cf-pix-copy" class="mt-3 w-full rounded-xl py-3.5 font-bold text-sm bg-gold text-black hover:brightness-110 flex items-center justify-center gap-2">
           <i class="fa-regular fa-copy" aria-hidden="true"></i>Copiar Pix copia e cola
@@ -483,7 +536,7 @@ tailwind.config = { theme: { extend: {
         <p id="cf-cancel" class="text-xs text-slate-300 mt-1 leading-snug"></p>
         <p class="text-xs text-slate-400 mt-1 leading-snug">No app do seu banco, escolha Pix &gt; Pix Copia e Cola. Depois envie o comprovante na conversa do WhatsApp. A reserva só é garantida após a confirmação do motorista.</p>
       </div>
-      <p id="cf-pix-none" class="hidden mt-5 text-left text-sm text-slate-300 rounded-2xl border border-gold/40 bg-gold/10 p-4">O valor do sinal (30%) será informado pelo motorista na conversa do WhatsApp.</p>
+      <p id="cf-pix-none" class="hidden mt-5 text-left text-sm text-slate-300 rounded-2xl border border-gold/40 bg-gold/10 p-4">O valor do sinal será informado pelo motorista na conversa do WhatsApp.</p>
 
       <ol id="cf-steps" class="mt-5 text-left space-y-3"></ol>
 
@@ -518,8 +571,15 @@ tailwind.config = { theme: { extend: {
   const TARIFA_DESLOC_KM = 1.40;     // R$ por km além do raio
   const RETORNO_PERC = 0.5;          // % do retorno vazio cobrado (além do raio)
   const SINAL_PERC = 0.30;           // sinal para fechar a reserva
-  const ESPERA_HORA = 40;            // R$ por hora de espera (opcional, mínimo 1 hora)
+  const ESPERA_HORA = 50;            // R$ por hora de espera (opcional, mínimo 1 hora)
   const ESPERA_MAX_H = 4;            // acima disso: "sob consulta"
+  const SINAL_MIN = 20;              // sinal mínimo (R$) para corridas curtas
+  const AEROPORTO = { lat: -20.2581, lon: -40.2864, raioKm: 3, minimo: 70 };   // aeroporto de Vitória: valor mínimo da corrida
+  const ADIC_NOTURNO = 0.20, NOITE_INI = 22, NOITE_FIM = 6;                    // +20% das 22h às 5h59
+  const ADIC_ESPECIAL = 0.25;        // +25% em datas especiais (edite a lista abaixo, formato AAAA-MM-DD)
+  const DATAS_ESPECIAIS = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"];
+  const RECARGA_LIMITE_KM = 120, RECARGA_TAXA = 30;   // taxa de recarga em viagens longas (km rodados no total)
+  const DISPONIVEL_HORA = 60, DISPONIVEL_MIN_H = 3;   // motorista à disposição (consulta pelo WhatsApp)
   const PIX_CHAVE = "49285098000160";           // chave Pix (CNPJ), só dígitos
   const PIX_CHAVE_FMT = "49.285.098/0001-60";
   const PIX_NOME = "TRIP CONFORT";              // até 25 caracteres, sem acento
@@ -686,14 +746,14 @@ tailwind.config = { theme: { extend: {
       $("ag-data").setAttribute("aria-invalid", true); $("ag-hora").setAttribute("aria-invalid", true);
       return false;
     }
-    if (new Date(`${dv}T${hv}`) - Date.now() < 24 * 3600e3) {
-      st.textContent = "Atenção: este horário está a menos de 24 horas. Nesse caso, o sinal não é devolvido em caso de cancelamento.";
-      st.className = "text-xs min-h-[1rem] -mt-2 text-gold";
-    }
+    const notas = [], ad = adicionalPerc();
+    if (new Date(`${dv}T${hv}`) - Date.now() < 24 * 3600e3) notas.push("Atenção: este horário está a menos de 24 horas. Nesse caso, o sinal não é devolvido em caso de cancelamento.");
+    if (ad.perc > 0) notas.push(`${ad.nome}: acréscimo de ${Math.round(ad.perc * 100)}% na corrida.`);
+    if (notas.length) { st.textContent = notas.join(" "); st.className = "text-xs min-h-[1rem] -mt-2 text-gold"; }
     return true;
   }
   refreshMin();
-  ["ag-data", "ag-hora"].forEach((id) => $(id).addEventListener("change", checkWhen));
+  ["ag-data", "ag-hora"].forEach((id) => $(id).addEventListener("change", () => { checkWhen(); render(); }));
 
   // ---- Aba 2: cálculo automático (OpenStreetMap: Nominatim + OSRM) ----
   let shown = 0, raf = 0;
@@ -756,8 +816,24 @@ tailwind.config = { theme: { extend: {
   function sobConsulta() {
     return route.ok && espera.on && espera.horas > ESPERA_MAX_H;   // só espera acima de 4 horas
   }
+  const distKm = (la1, lo1, la2, lo2) => {
+    const R = 6371, rad = Math.PI / 180, dLa = (la2 - la1) * rad, dLo = (lo2 - lo1) * rad;
+    const h = Math.sin(dLa / 2) ** 2 + Math.cos(la1 * rad) * Math.cos(la2 * rad) * Math.sin(dLo / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  };
+  function ehAeroporto() {
+    const perto = (pt) => pt && distKm(pt.lat, pt.lon, AEROPORTO.lat, AEROPORTO.lon) <= AEROPORTO.raioKm;
+    return !!(perto(F.origem.pt) || perto(F.destino.pt));
+  }
+  function adicionalPerc() {
+    const dv = $("ag-data").value, hv = $("ag-hora").value;
+    if (dv && DATAS_ESPECIAIS.includes(dv)) return { perc: ADIC_ESPECIAL, nome: "Data especial" };
+    if (hv) { const h = parseInt(hv.split(":")[0], 10); if (h >= NOITE_INI || h < NOITE_FIM) return { perc: ADIC_NOTURNO, nome: "Adicional noturno" }; }
+    return { perc: 0, nome: "" };
+  }
   function calcPreco() {
-    const ida = Math.max(route.km * TARIFA_KM, VALOR_MINIMO);
+    const minimo = ehAeroporto() ? AEROPORTO.minimo : VALOR_MINIMO;
+    const ida = Math.max(route.km * TARIFA_KM, minimo);
     const volta = espera.on ? ida : 0;
     const esp = espera.on ? espera.horas * ESPERA_HORA : 0;
     const retKm = espera.on ? route.desl : route.ret;   // com espera, o carro volta à base saindo da origem
@@ -765,8 +841,13 @@ tailwind.config = { theme: { extend: {
     const retExc = Math.max(0, retKm - RAIO_GRATIS_KM);
     const desl = deslExc * TARIFA_DESLOC_KM;
     const ret = retExc * TARIFA_DESLOC_KM * RETORNO_PERC;
-    const total = Math.round((ida + volta + esp + desl + ret) * 100) / 100;
-    return { corrida: ida, volta, esp, deslExc, retExc, desl, ret, total, sinal: Math.round(total * SINAL_PERC * 100) / 100 };
+    const ad = adicionalPerc();
+    const adicional = Math.round((ida + volta) * ad.perc * 100) / 100;
+    const kmTotal = espera.on ? route.desl * 2 + route.km * 2 : route.desl + route.km + route.ret;
+    const recarga = kmTotal > RECARGA_LIMITE_KM ? RECARGA_TAXA : 0;
+    const total = Math.round((ida + volta + esp + desl + ret + adicional + recarga) * 100) / 100;
+    const sinal = Math.min(total, Math.max(Math.round(total * SINAL_PERC * 100) / 100, SINAL_MIN));
+    return { corrida: ida, volta, esp, deslExc, retExc, desl, ret, adicional, adNome: ad.nome, adPerc: ad.perc, recarga, minimo, total, sinal };
   }
   const precoFinal = () => (route.ok && !sobConsulta() ? calcPreco().total : null);
   $("ag-espera").addEventListener("change", () => {
@@ -784,14 +865,17 @@ tailwind.config = { theme: { extend: {
 
     if (route.ok && !sobConsulta()) {
       const p = calcPreco();
-      const minimo = route.km * TARIFA_KM < VALOR_MINIMO, nome = espera.on ? "Ida" : "Corrida";
-      $("t-corrida").textContent = minimo ? `${nome} (valor mínimo)` : `${nome} (${n1(route.km)} km × R$ 2,80)`;
+      const nome = espera.on ? "Ida" : "Corrida", isMin = route.km * TARIFA_KM < p.minimo;
+      $("t-corrida").textContent = isMin ? `${nome} (${p.minimo > VALOR_MINIMO ? "mínimo aeroporto" : "valor mínimo"})` : `${nome} (${n1(route.km)} km × R$ 2,80)`;
+      $("r-adic").classList.toggle("hidden", !(p.adicional > 0)); $("r-rec").classList.toggle("hidden", !(p.recarga > 0));
+      if (p.adicional > 0) { $("t-adic").textContent = `${p.adNome} (+${Math.round(p.adPerc * 100)}%)`; $("v-adic").textContent = brl(p.adicional); }
+      if (p.recarga > 0) $("v-rec").textContent = brl(p.recarga);
       $("r-volta").classList.toggle("hidden", !espera.on); $("r-esp").classList.toggle("hidden", !espera.on);
       if (espera.on) {
         $("t-volta").textContent = "Volta (mesmo valor da ida)"; $("v-volta").textContent = brl(p.volta);
         $("t-esp").textContent = `Espera (${fmtH(espera.horas)} × R$ ${ESPERA_HORA},00/h)`; $("v-esp").textContent = brl(p.esp);
       }
-      $("calc-sinal").textContent = `Sinal de 30% para reservar: ${brl(p.sinal)}`;
+      $("calc-sinal").textContent = `Sinal para reservar: ${brl(p.sinal)}`;
       $("v-corrida").textContent = brl(p.corrida);
       $("t-desl").textContent = p.deslExc > 0 ? `Deslocamento (${n1(p.deslExc)} km além do raio)` : "Deslocamento até o embarque";
       $("v-desl").textContent = p.desl > 0 ? brl(p.desl) : "Incluso";
@@ -802,7 +886,7 @@ tailwind.config = { theme: { extend: {
       return;
     }
     cancelAnimationFrame(raf); shown = 0;
-    $("r-volta").classList.add("hidden"); $("r-esp").classList.add("hidden"); $("calc-sinal").textContent = "";
+    $("r-volta").classList.add("hidden"); $("r-esp").classList.add("hidden"); $("r-adic").classList.add("hidden"); $("r-rec").classList.add("hidden"); $("calc-sinal").textContent = "";
     $("t-corrida").textContent = "Corrida"; $("t-desl").textContent = "Deslocamento até o embarque"; $("t-ret").textContent = "Retorno";
     dash("v-corrida"); dash("v-desl"); dash("v-ret");
     if (route.ok && sobConsulta()) {
@@ -964,13 +1048,15 @@ tailwind.config = { theme: { extend: {
     if (p) {
       const vals = espera.on
         ? [`Ida: ${brl2(p.corrida)}`, `Volta: ${brl2(p.volta)}`, `Espera (${fmtH(espera.horas)}): ${brl2(p.esp)}`]
-        : [`Corrida${route.km * TARIFA_KM < VALOR_MINIMO ? " (mínimo)" : ""}: ${brl2(p.corrida)}`];
+        : [`Corrida${route.km * TARIFA_KM < p.minimo ? (p.minimo > VALOR_MINIMO ? " (mínimo aeroporto)" : " (mínimo)") : ""}: ${brl2(p.corrida)}`];
+      if (p.adicional > 0) vals.push(`${p.adNome} (+${Math.round(p.adPerc * 100)}%): ${brl2(p.adicional)}`);
+      if (p.recarga > 0) vals.push(`Recarga (viagem longa): ${brl2(p.recarga)}`);
       linhas.push(
         "*VALORES*", ...vals,
         `Deslocamento: ${p.desl > 0 ? brl2(p.desl) : "Incluso"}`,
         `Retorno: ${p.ret > 0 ? brl2(p.ret) : "Incluso"}`,
         "", "*TOTAL ESTIMADO*", `*${brl2(p.total)}*`,
-        "", "*SINAL PARA RESERVA (30%)*", `${brl2(p.sinal)} via Pix (comprovante a seguir)`,
+        "", "*SINAL PARA RESERVA*", `${brl2(p.sinal)} via Pix (comprovante a seguir)`,
         ...(menos24 ? ["Sem devolução (horário a menos de 24h)"] : [])
       );
     } else {
@@ -997,9 +1083,11 @@ tailwind.config = { theme: { extend: {
       valores: p ? [
         [$("t-corrida").textContent, $("v-corrida").textContent],
         ...(espera.on ? [[$("t-volta").textContent, $("v-volta").textContent], [$("t-esp").textContent, $("v-esp").textContent]] : []),
+        ...(p.adicional > 0 ? [[$("t-adic").textContent, $("v-adic").textContent]] : []),
+        ...(p.recarga > 0 ? [[$("t-rec").textContent, $("v-rec").textContent]] : []),
         [$("t-desl").textContent, $("v-desl").textContent],
         [$("t-ret").textContent, $("v-ret").textContent],
-        ["Sinal para reservar (30%)", brl2(p.sinal)]
+        ["Sinal para reservar", brl2(p.sinal)]
       ] : null,
       pix: p ? { payload: pixPayload(p.sinal, proto), txt: brl2(p.sinal) } : null,
       pixNone: !p,
@@ -1008,7 +1096,7 @@ tailwind.config = { theme: { extend: {
       nota: "Valor estimado, confirmado pelo motorista. A reserva só é garantida após a confirmação. Sinal devolvido em cancelamentos até 24 horas antes; depois disso fica retido, pois reserva o horário. Rotas com dados © colaboradores do OpenStreetMap.",
       steps: [
         ...(p
-          ? [["Pague o sinal de 30% por Pix", "Copie o código acima e pague no app do seu banco."],
+          ? [["Pague o sinal por Pix", "Copie o código acima e pague no app do seu banco."],
              ["Envie a solicitação no WhatsApp", "Toque no botão verde e anexe o comprovante na conversa."]]
           : [["Envie a solicitação no WhatsApp", "Toque no botão verde para abrir a conversa com tudo pronto."],
              ["Aguarde a confirmação", "O motorista confirma horário, valor final e o sinal."]]),
@@ -1304,6 +1392,24 @@ tailwind.config = { theme: { extend: {
       }, { passive: true });
     }
   })();
+
+  // ---- Atalhos de rota e motorista à disposição ----
+  $("chip-aero").textContent = "mínimo " + brl(AEROPORTO.minimo);
+  $("dispo-txt").textContent = `${brl(DISPONIVEL_HORA).replace(",00", "")} por hora, mínimo de ${DISPONIVEL_MIN_H} horas.`;
+  document.querySelectorAll(".route-chip").forEach((b) => b.addEventListener("click", () => {
+    selectTab("tab-sched");
+    const f = F.destino, el = $(f.el);
+    el.value = b.dataset.dest; el.removeAttribute("aria-invalid");
+    clearTimeout(f.timer); f.q = ""; f.pt = null; geoField(f);
+    $("agendar").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    if (!$("ag-origem").value.trim()) setTimeout(() => $("ag-origem").focus({ preventScroll: true }), 500);
+  }));
+  $("btn-dispo").addEventListener("click", () => openWA([
+    "*MOTORISTA À DISPOSIÇÃO*", "Trip Confort", "",
+    `Olá! Gostaria de contratar o motorista à disposição por hora (mínimo de ${DISPONIVEL_MIN_H} horas).`, "",
+    "*DATA E HORÁRIO*", "(a combinar)", "",
+    "Poderia confirmar a disponibilidade e o valor?"
+  ].join("\n")));
 
   // ---- Revelação ao rolar ----
   const reveals = document.querySelectorAll(".reveal");
