@@ -8,7 +8,7 @@
 <meta name="description" content="Transporte executivo 100% elétrico, transfers e viagens agendadas com pontualidade e conforto VIP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -128,7 +128,7 @@ tailwind.config = { theme: { extend: {
   body.splash .rise, body.splash .hero-img, body.splash .sheen, body.splash .pulse-bolt, body.splash .btn-wa::after { animation-play-state: paused; }
 
   /* ===== SHOWROOM ===== */
-  .showroom { position: relative; overflow: hidden; max-width: 42rem; margin: 0 auto 1.25rem; background: #000; }
+  .showroom { position: relative; overflow: hidden; max-width: 42rem; margin: 0 auto 1.25rem; background: transparent; }
   .showroom-img { display: block; width: 100%; height: auto;
     filter: brightness(.84) contrast(1.07) saturate(.95);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 76%, transparent 100%), linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
@@ -138,6 +138,61 @@ tailwind.config = { theme: { extend: {
   .showroom-glow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
     background: radial-gradient(ellipse 60% 38% at 50% 82%, rgba(212,167,79,.16), transparent 70%); }
   .showroom-cap { position: absolute; left: 1rem; bottom: .9rem; }
+
+  /* ===== VIDA / IMPACTO ===== */
+  @property --ang { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+  body { position: relative; }
+  .font-display { font-family: 'Cinzel', 'Times New Roman', serif; }
+  header, main, footer, .hero-copy, .showroom, .hero-pills { position: relative; z-index: 1; }
+  .aurora { position: absolute; top: 0; left: 0; right: 0; height: 700px; overflow: hidden; pointer-events: none; z-index: 0; }
+  .aurora i { position: absolute; border-radius: 50%; filter: blur(70px); }
+  .aurora i:nth-child(1) { width: 320px; height: 320px; left: -90px; top: 60px; background: rgba(212,167,79,.17); animation: drift1 14s ease-in-out infinite alternate; }
+  .aurora i:nth-child(2) { width: 300px; height: 300px; right: -100px; top: 330px; background: rgba(16,185,129,.10); animation: drift2 18s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(70px, 90px) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(-60px, -70px) scale(1.2); } }
+
+  .hero-copy { max-width: 42rem; margin: 0 auto; padding: .75rem 1rem 1.1rem; text-align: center; }
+  .hc-eyebrow { font-size: .64rem; letter-spacing: .2em; color: #D4A74F; font-weight: 600; }
+  .hc-title { font-family: 'Cinzel', 'Times New Roman', serif; font-weight: 700; font-size: clamp(1.85rem, 8.4vw, 2.7rem); line-height: 1.14; color: #fff; margin: .75rem 0 .8rem; }
+  .hc-shine { background: linear-gradient(100deg, #B8892E 20%, #FBE7A1 45%, #D4A74F 55%, #B8892E 80%); background-size: 220% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: shineText 4.8s ease-in-out infinite; }
+  @keyframes shineText { 0% { background-position: 125% 0; } 65%, 100% { background-position: -70% 0; } }
+  .hc-sub { font-size: .92rem; color: #94A3B8; max-width: 27rem; margin: 0 auto; line-height: 1.55; }
+  .hc-cta { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; margin-top: 1.3rem; }
+  .btn-gold { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; padding: .95rem 1.45rem; border-radius: .9rem;
+    font-weight: 700; font-size: .95rem; color: #000; background: linear-gradient(135deg, #C9A24A, #F3D98B 50%, #C9A24A); box-shadow: 0 12px 32px -12px rgba(212,167,79,.7); transition: transform .15s, filter .2s; }
+  .btn-gold:hover { filter: brightness(1.08); } .btn-gold:active { transform: scale(.97); }
+  .btn-gold::after { content: ""; position: absolute; inset: 0; pointer-events: none; transform: translateX(-120%);
+    background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%); animation: shimmer 4.5s ease-in-out 1.8s infinite; }
+  .btn-ghost { display: inline-flex; align-items: center; gap: .5rem; padding: .95rem 1.2rem; border-radius: .9rem; font-weight: 600; font-size: .95rem; color: #E2E8F0; border: 1px solid rgba(255,255,255,.2); transition: background .2s; }
+  .btn-ghost:hover { background: rgba(255,255,255,.06); }
+
+  .hero-pills { max-width: 42rem; margin: 0 auto 1.4rem; padding: 0 1rem; }
+  .showroom-img { translate: 0 var(--py, 0px); }
+
+  .panel { position: relative; }
+  .panel::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: conic-gradient(from var(--ang), transparent 0 62%, rgba(212,167,79,.95) 80%, transparent 92%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: spinAng 7s linear infinite; }
+  @keyframes spinAng { to { --ang: 360deg; } }
+
+  .steps { position: relative; margin: 0 0 1.4rem; }
+  .steps-line { position: absolute; left: 17%; right: 17%; top: 1.2rem; height: 1px; transform: scaleX(0); transform-origin: left; transition: transform 1.3s cubic-bezier(.2,.7,.2,1) .35s;
+    background: linear-gradient(90deg, rgba(212,167,79,.25), #D4A74F, rgba(212,167,79,.25)); }
+  .steps.in .steps-line { transform: scaleX(1); }
+  .steps-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; list-style: none; margin: 0; padding: 0; text-align: center; }
+  .step-n { display: flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; margin: 0 auto .55rem; border-radius: 50%;
+    border: 1px solid #D4A74F; background: #000; color: #D4A74F; font-family: 'Cinzel', serif; font-weight: 700; }
+  .steps-grid b { display: block; font-size: .8rem; color: #fff; }
+  .steps-grid small { display: block; font-size: .7rem; color: #94A3B8; margin-top: .1rem; }
+  #agendar { scroll-margin-top: 1rem; }
+
+  .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; justify-content: center; pointer-events: none;
+    padding: .8rem 1rem calc(.8rem + env(safe-area-inset-bottom, 0px)); background: linear-gradient(to top, #000 55%, transparent);
+    transform: translateY(115%); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .sticky-cta.show { transform: none; }
+  .sticky-cta .btn-gold { pointer-events: auto; width: 100%; max-width: 26rem; }
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}#splash{display:none}</style></noscript>
 </head>
@@ -159,27 +214,30 @@ tailwind.config = { theme: { extend: {
 <script>(function(){var s=document.getElementById("splash");try{if(sessionStorage.getItem("tcSplash")||matchMedia("(prefers-reduced-motion: reduce)").matches){s.remove();return}}catch(e){}document.body.classList.add("splash")})();</script>
 
 <!-- HEADER -->
-<header class="px-4 pt-[max(1.25rem,env(safe-area-inset-top))] pb-6 max-w-2xl mx-auto">
+<header class="px-4 pt-[max(1.25rem,env(safe-area-inset-top))] pb-2 max-w-2xl mx-auto">
   <div class="flex items-center gap-3 rise">
     <div class="h-12 w-12 rounded-xl flex items-center justify-center bg-graphite border border-gold/60">
       <i class="fa-solid fa-shield-halved text-gold text-xl" aria-hidden="true"></i>
     </div>
     <div>
-      <h1 class="text-2xl font-extrabold tracking-[.14em] text-white leading-none">TRIP <span class="text-gold">CONFORT</span></h1>
+      <h1 class="font-display text-2xl font-bold tracking-[.14em] text-white leading-none">TRIP <span class="text-gold">CONFORT</span></h1>
       <p class="text-[13px] text-slate-400 mt-1.5 leading-snug">Transporte Executivo, Transfers &amp; Viagens Agendadas</p>
     </div>
   </div>
 
-  <div class="mt-5 flex flex-wrap gap-2 rise" style="--d:.35s" aria-label="Destaques do serviço">
-    <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-slate-200 flex items-center gap-2"><i class="fa-regular fa-snowflake text-slate-300" aria-hidden="true"></i>Ar-Condicionado a Bordo</span>
-    <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-gold flex items-center gap-2"><i class="fa-solid fa-clock" aria-hidden="true"></i>Pontualidade &amp; Conforto VIP</span>
-  </div>
-  <div class="mt-3 flex items-center gap-4 text-[11px] text-slate-400 rise" style="--d:.45s">
-    <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-gold" aria-hidden="true"></i>Viagem segura</span>
-    <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-gold" aria-hidden="true"></i>Horário respeitado</span>
-    <span class="flex items-center gap-1.5"><i class="fa-solid fa-leaf text-gold" aria-hidden="true"></i>Zero emissões</span>
-  </div>
 </header>
+<div class="aurora" aria-hidden="true"><i></i><i></i></div>
+
+<!-- CHAMADA PRINCIPAL -->
+<section class="hero-copy rise" style="--d:.25s">
+  <p class="hc-eyebrow">TRANSPORTE EXECUTIVO 100% ELÉTRICO</p>
+  <h2 class="hc-title">Chegue com <span class="hc-shine">elegância.</span><br>Viaje em silêncio.</h2>
+  <p class="hc-sub">Transfers, aeroporto e viagens agendadas, com pontualidade, conforto e o valor calculado na hora.</p>
+  <div class="hc-cta">
+    <a href="#agendar" id="cta-agendar" class="btn-gold">Agendar minha viagem <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+    <a id="cta-wa" href="#" target="_blank" rel="noopener" class="btn-ghost"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
+  </div>
+</section>
 
 <!-- HERO: SHOWROOM -->
 <section class="showroom rise" style="--d:.15s" aria-label="BYD Dolphin GS">
@@ -189,11 +247,32 @@ tailwind.config = { theme: { extend: {
     <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-emerald flex items-center gap-2"><i class="fa-solid fa-bolt pulse-bolt" aria-hidden="true"></i>BYD Dolphin GS • 100% Elétrico</span>
   </div>
 </section>
+<div class="hero-pills">
+  <div class="flex flex-wrap justify-center gap-2 rise" style="--d:.35s" aria-label="Destaques do serviço">
+    <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-slate-200 flex items-center gap-2"><i class="fa-regular fa-snowflake text-slate-300" aria-hidden="true"></i>Ar-Condicionado a Bordo</span>
+    <span class="glass rounded-full px-3 py-1.5 text-xs font-semibold text-gold flex items-center gap-2"><i class="fa-solid fa-clock" aria-hidden="true"></i>Pontualidade &amp; Conforto VIP</span>
+  </div>
+  <div class="mt-3 flex items-center justify-center gap-4 text-[11px] text-slate-400 rise" style="--d:.45s">
+    <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-gold" aria-hidden="true"></i>Viagem segura</span>
+    <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-gold" aria-hidden="true"></i>Horário respeitado</span>
+    <span class="flex items-center gap-1.5"><i class="fa-solid fa-leaf text-gold" aria-hidden="true"></i>Zero emissões</span>
+  </div>
+</div>
 
 <main class="px-4 max-w-2xl mx-auto">
+  <!-- COMO FUNCIONA -->
+  <section class="reveal steps" aria-label="Como funciona">
+    <div class="steps-line" aria-hidden="true"></div>
+    <ol class="steps-grid">
+      <li><span class="step-n">1</span><b>Informe a rota</b><small>origem e destino</small></li>
+      <li><span class="step-n">2</span><b>Veja o valor</b><small>calculado na hora</small></li>
+      <li><span class="step-n">3</span><b>Reserve</b><small>sinal de 30% por Pix</small></li>
+    </ol>
+  </section>
+
 
   <!-- TABS -->
-  <div role="tablist" aria-label="Tipo de solicitação" style="--d:.55s" class="rise relative glass rounded-2xl p-1.5 grid grid-cols-2 gap-1.5">
+  <div id="agendar" role="tablist" aria-label="Tipo de solicitação" style="--d:.55s" class="rise relative glass rounded-2xl p-1.5 grid grid-cols-2 gap-1.5">
     <span id="tab-pill" class="tab-pill" aria-hidden="true"></span>
     <button id="tab-sched" role="tab" aria-selected="true" aria-controls="panel-sched" class="tab-btn rounded-xl py-3 text-sm font-bold flex items-center justify-center gap-2">
       <i class="fa-regular fa-calendar-check" aria-hidden="true"></i>Agendar Viagem
@@ -356,7 +435,7 @@ tailwind.config = { theme: { extend: {
 </main>
 
 <!-- RODAPÉ -->
-<footer class="mt-12 px-4 pb-10 max-w-2xl mx-auto">
+<footer class="mt-12 px-4 pb-28 max-w-2xl mx-auto">
   <div class="reveal glass rounded-2xl p-5 text-center">
     <p class="text-sm text-slate-300">Atendimento executivo</p>
     <a id="footer-wa" href="#" target="_blank" rel="noopener" class="btn-wa mt-3 inline-flex items-center justify-center gap-2.5 rounded-xl px-6 py-3.5 font-bold text-sm">
@@ -365,6 +444,8 @@ tailwind.config = { theme: { extend: {
   </div>
   <p class="text-center text-xs text-slate-500 mt-6">&copy; <span id="ano"></span> Trip Confort. Todos os direitos reservados.</p>
 </footer>
+
+<div id="stickycta" class="sticky-cta" aria-hidden="true"><a href="#agendar" class="btn-gold" tabindex="-1">Agendar minha viagem</a></div>
 
 <!-- TELA DE CONFIRMAÇÃO -->
 <div id="confirm" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="cf-title">
@@ -1204,6 +1285,25 @@ tailwind.config = { theme: { extend: {
       else sessionStorage.removeItem("tcPend");
     }
   } catch (e) {}
+
+  // ---- Vida: CTA, barra fixa e parallax ----
+  $("cta-wa").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá Trip Confort! Gostaria de mais informações.")}`;
+  (function () {
+    const bar = $("stickycta"); let heroVis = true, formVis = false;
+    const upd = () => { const on = !heroVis && !formVis; bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", !on); bar.firstElementChild.tabIndex = on ? 0 : -1; };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((e) => { heroVis = e[0].isIntersecting; upd(); }).observe($("cta-agendar"));
+      new IntersectionObserver((e) => { formVis = e[0].isIntersecting; upd(); }, { threshold: 0.15 }).observe($("agendar"));
+    }
+    const img = document.querySelector(".showroom-img");
+    if (img && !reduce) {
+      let tick = false;
+      window.addEventListener("scroll", () => {
+        if (tick) return; tick = true;
+        requestAnimationFrame(() => { img.style.setProperty("--py", Math.min(window.scrollY, 700) * 0.09 + "px"); tick = false; });
+      }, { passive: true });
+    }
+  })();
 
   // ---- Revelação ao rolar ----
   const reveals = document.querySelectorAll(".reveal");
