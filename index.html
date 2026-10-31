@@ -14,7 +14,7 @@
 <script>
 tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
-  colors: { graphite:'#000000', emerald:{ DEFAULT:'#10B981', dark:'#059669' }, gold:'#D4A74F' }
+  colors: { graphite:'#000000', emerald:{ DEFAULT:'#10B981', dark:'#059669' }, gold:'#E0526A' }
 }}};
 </script>
 <style>
@@ -41,8 +41,8 @@ tailwind.config = { theme: { extend: {
     transition: border-color .2s, box-shadow .2s;
   }
   .field::placeholder { color: #64748B; }
-  .field:focus { outline: none; border-color: #D4A74F; box-shadow: 0 0 0 3px rgba(212,167,79,.22); }
-  .field[aria-invalid="true"] { border-color: #F87171; }
+  .field:focus { outline: none; border-color: #E0526A; box-shadow: 0 0 0 3px rgba(224,82,106,.22); }
+  .field[aria-invalid="true"] { border-color: #FB923C; }
   input[type="date"], input[type="time"], select.field { color-scheme: dark; }
   .tab-btn { transition: background .2s, color .2s; }
   .tab-btn[aria-selected="true"] { color: #fff; }
@@ -53,7 +53,7 @@ tailwind.config = { theme: { extend: {
   .btn-wa:disabled { opacity: .45; cursor: not-allowed; }
   .panel { animation: panelIn .25s ease-out; }
   @keyframes panelIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  :focus-visible { outline: 2px solid #D4A74F; outline-offset: 2px; }
+  :focus-visible { outline: 2px solid #E0526A; outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
   body { padding-bottom: env(safe-area-inset-bottom, 0px); }
 
@@ -65,7 +65,7 @@ tailwind.config = { theme: { extend: {
   @keyframes heroZoom { from { transform: scale(1.15); } to { transform: scale(1); } }
 
   .sheen { position: absolute; inset: 0; pointer-events: none; transform: translateX(-110%);
-    background: linear-gradient(105deg, transparent 38%, rgba(212,167,79,.30) 50%, transparent 62%);
+    background: linear-gradient(105deg, transparent 38%, rgba(224,82,106,.30) 50%, transparent 62%);
     animation: sheen 1.9s ease-out 1.1s both; }
   @keyframes sheen { to { transform: translateX(110%); } }
 
@@ -73,7 +73,7 @@ tailwind.config = { theme: { extend: {
   @keyframes boltPulse { 0%,100% { opacity: .65; text-shadow: none; } 50% { opacity: 1; text-shadow: 0 0 10px rgba(16,185,129,.95); } }
 
   .tab-pill { position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 9px); border-radius: .75rem;
-    background: rgba(212,167,79,.14); box-shadow: inset 0 0 0 1px rgba(212,167,79,.55);
+    background: rgba(224,82,106,.14); box-shadow: inset 0 0 0 1px rgba(224,82,106,.55);
     transition: transform .4s cubic-bezier(.3,.8,.2,1); }
   .tab-btn { position: relative; z-index: 1; }
 
@@ -90,7 +90,7 @@ tailwind.config = { theme: { extend: {
   @keyframes shimmer { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
 
   .bump { animation: bump .4s ease-out; }
-  @keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.025); box-shadow: 0 0 28px rgba(212,167,79,.28); } 100% { transform: scale(1); } }
+  @keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.025); box-shadow: 0 0 28px rgba(224,82,106,.28); } 100% { transform: scale(1); } }
 
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease-out, transform .7s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
@@ -107,7 +107,7 @@ tailwind.config = { theme: { extend: {
   #splash.out { opacity: 0; pointer-events: none; }
   @keyframes splashAway { to { opacity: 0; visibility: hidden; pointer-events: none; } }
   .sp-glow { position: absolute; top: 50%; left: 50%; width: 440px; height: 440px; margin: -250px 0 0 -220px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,167,79,.16), transparent 65%); animation: spGlow 2s ease-out both; }
+    background: radial-gradient(circle, rgba(224,82,106,.16), transparent 65%); animation: spGlow 2s ease-out both; }
   @keyframes spGlow { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
   .sp-shield { width: 96px; height: 96px; position: relative; }
   .sp-shield path:first-child { stroke-dasharray: 100; stroke-dashoffset: 100; animation: spDraw 1.1s cubic-bezier(.4,0,.2,1) .1s forwards; }
@@ -116,9 +116,9 @@ tailwind.config = { theme: { extend: {
   @keyframes spBolt { from { opacity: 0; transform: scale(.55); } to { opacity: 1; transform: scale(1); } }
   .sp-title { position: relative; margin-top: 1.75rem; font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: .02em; margin-right: -.22em;
     opacity: 0; animation: spTitle 1.1s cubic-bezier(.2,.7,.2,1) .5s forwards; }
-  .sp-title .g { color: #D4A74F; }
+  .sp-title .g { color: #E0526A; }
   @keyframes spTitle { from { opacity: 0; letter-spacing: .02em; } to { opacity: 1; letter-spacing: .22em; } }
-  .sp-line { position: relative; height: 1px; width: 0; margin: 1.25rem 0; background: linear-gradient(90deg, transparent, #D4A74F, transparent); animation: spLine 1s ease 1.1s forwards; }
+  .sp-line { position: relative; height: 1px; width: 0; margin: 1.25rem 0; background: linear-gradient(90deg, transparent, #E0526A, transparent); animation: spLine 1s ease 1.1s forwards; }
   @keyframes spLine { to { width: 180px; } }
   .sp-sub, .sp-badge, .sp-skip { position: relative; opacity: 0; animation: spFade .8s ease forwards; }
   .sp-sub { font-size: .8rem; color: #94A3B8; max-width: 20rem; animation-delay: 1.4s; }
@@ -136,7 +136,7 @@ tailwind.config = { theme: { extend: {
             mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 76%, transparent 100%), linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
             mask-composite: intersect; }
   .showroom-glow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
-    background: radial-gradient(ellipse 60% 38% at 50% 82%, rgba(212,167,79,.16), transparent 70%); }
+    background: radial-gradient(ellipse 60% 38% at 50% 82%, rgba(224,82,106,.16), transparent 70%); }
   .showroom-cap { position: absolute; left: 1rem; bottom: .9rem; }
 
   /* ===== VIDA / IMPACTO ===== */
@@ -146,21 +146,21 @@ tailwind.config = { theme: { extend: {
   header, main, footer, .hero-copy, .showroom, .hero-pills { position: relative; z-index: 1; }
   .aurora { position: absolute; top: 0; left: 0; right: 0; height: 700px; overflow: hidden; pointer-events: none; z-index: 0; }
   .aurora i { position: absolute; border-radius: 50%; filter: blur(70px); }
-  .aurora i:nth-child(1) { width: 320px; height: 320px; left: -90px; top: 60px; background: rgba(212,167,79,.17); animation: drift1 14s ease-in-out infinite alternate; }
-  .aurora i:nth-child(2) { width: 300px; height: 300px; right: -100px; top: 330px; background: rgba(16,185,129,.10); animation: drift2 18s ease-in-out infinite alternate; }
+  .aurora i:nth-child(1) { width: 320px; height: 320px; left: -90px; top: 60px; background: rgba(224,82,106,.17); animation: drift1 14s ease-in-out infinite alternate; }
+  .aurora i:nth-child(2) { width: 300px; height: 300px; right: -100px; top: 330px; background: rgba(190,35,65,.16); animation: drift2 18s ease-in-out infinite alternate; }
   @keyframes drift1 { to { transform: translate(70px, 90px) scale(1.15); } }
   @keyframes drift2 { to { transform: translate(-60px, -70px) scale(1.2); } }
 
   .hero-copy { max-width: 42rem; margin: 0 auto; padding: .75rem 1rem 1.1rem; text-align: center; }
-  .hc-eyebrow { font-size: .64rem; letter-spacing: .2em; color: #D4A74F; font-weight: 600; }
+  .hc-eyebrow { font-size: .64rem; letter-spacing: .2em; color: #E0526A; font-weight: 600; }
   .hc-title { font-family: 'Cinzel', 'Times New Roman', serif; font-weight: 700; font-size: clamp(1.85rem, 8.4vw, 2.7rem); line-height: 1.14; color: #fff; margin: .75rem 0 .8rem; }
-  .hc-shine { background: linear-gradient(100deg, #B8892E 20%, #FBE7A1 45%, #D4A74F 55%, #B8892E 80%); background-size: 220% 100%;
+  .hc-shine { background: linear-gradient(100deg, #9E2640 20%, #FF9AAE 45%, #D03A57 55%, #9E2640 80%); background-size: 220% 100%;
     -webkit-background-clip: text; background-clip: text; color: transparent; animation: shineText 4.8s ease-in-out infinite; }
   @keyframes shineText { 0% { background-position: 125% 0; } 65%, 100% { background-position: -70% 0; } }
   .hc-sub { font-size: .92rem; color: #94A3B8; max-width: 27rem; margin: 0 auto; line-height: 1.55; }
   .hc-cta { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; margin-top: 1.3rem; }
   .btn-gold { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: .55rem; padding: .95rem 1.45rem; border-radius: .9rem;
-    font-weight: 700; font-size: .95rem; color: #000; background: linear-gradient(135deg, #C9A24A, #F3D98B 50%, #C9A24A); box-shadow: 0 12px 32px -12px rgba(212,167,79,.7); transition: transform .15s, filter .2s; }
+    font-weight: 700; font-size: .95rem; color: #fff; background: linear-gradient(135deg, #7E1A2E, #C9304F 50%, #7E1A2E); box-shadow: 0 12px 34px -12px rgba(220,60,95,.6); transition: transform .15s, filter .2s; }
   .btn-gold:hover { filter: brightness(1.08); } .btn-gold:active { transform: scale(.97); }
   .btn-gold::after { content: ""; position: absolute; inset: 0; pointer-events: none; transform: translateX(-120%);
     background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%); animation: shimmer 4.5s ease-in-out 1.8s infinite; }
@@ -172,18 +172,18 @@ tailwind.config = { theme: { extend: {
 
   .panel { position: relative; }
   .panel::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
-    background: conic-gradient(from var(--ang), transparent 0 62%, rgba(212,167,79,.95) 80%, transparent 92%);
+    background: conic-gradient(from var(--ang), transparent 0 62%, rgba(224,82,106,.95) 80%, transparent 92%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
     animation: spinAng 7s linear infinite; }
   @keyframes spinAng { to { --ang: 360deg; } }
 
   .steps { position: relative; margin: 0 0 1.4rem; }
   .steps-line { position: absolute; left: 17%; right: 17%; top: 1.2rem; height: 1px; transform: scaleX(0); transform-origin: left; transition: transform 1.3s cubic-bezier(.2,.7,.2,1) .35s;
-    background: linear-gradient(90deg, rgba(212,167,79,.25), #D4A74F, rgba(212,167,79,.25)); }
+    background: linear-gradient(90deg, rgba(224,82,106,.25), #E0526A, rgba(224,82,106,.25)); }
   .steps.in .steps-line { transform: scaleX(1); }
   .steps-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; list-style: none; margin: 0; padding: 0; text-align: center; }
   .step-n { display: flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; margin: 0 auto .55rem; border-radius: 50%;
-    border: 1px solid #D4A74F; background: #000; color: #D4A74F; font-family: 'Cinzel', serif; font-weight: 700; }
+    border: 1px solid #E0526A; background: #000; color: #E0526A; font-family: 'Cinzel', serif; font-weight: 700; }
   .steps-grid b { display: block; font-size: .8rem; color: #fff; }
   .steps-grid small { display: block; font-size: .7rem; color: #94A3B8; margin-top: .1rem; }
   #agendar { scroll-margin-top: 1rem; }
@@ -192,17 +192,13 @@ tailwind.config = { theme: { extend: {
     padding: .8rem 1rem calc(.8rem + env(safe-area-inset-bottom, 0px)); background: linear-gradient(to top, #000 55%, transparent);
     transform: translateY(115%); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   .sticky-cta.show { transform: none; }
+  .btn-gold-solid { background: linear-gradient(135deg, #7E1A2E, #C9304F 50%, #7E1A2E); color: #fff; }
   .sticky-cta .btn-gold { pointer-events: auto; width: 100%; max-width: 26rem; }
 
-  .route-chip { display: flex; flex-direction: column; align-items: flex-start; gap: .15rem; padding: .9rem; border-radius: 1rem; text-align: left; color: #fff;
-    border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); transition: background .2s, border-color .2s, transform .12s; }
-  .route-chip:hover { border-color: rgba(212,167,79,.5); background: rgba(212,167,79,.06); } .route-chip:active { transform: scale(.97); }
-  .route-chip i { color: #D4A74F; margin-bottom: .35rem; font-size: 1.05rem; }
-  .route-chip b { font-size: .86rem; } .route-chip small { font-size: .7rem; color: #94A3B8; }
   .faq { border: 1px solid rgba(255,255,255,.1); border-radius: 1rem; background: rgba(255,255,255,.03); padding: 0 1rem; }
   .faq summary { cursor: pointer; list-style: none; padding: .95rem 0; font-weight: 600; font-size: .92rem; color: #fff; display: flex; justify-content: space-between; gap: 1rem; }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary::after { content: "+"; color: #D4A74F; font-size: 1.25rem; line-height: 1; }
+  .faq summary::after { content: "+"; color: #E0526A; font-size: 1.25rem; line-height: 1; }
   .faq[open] summary::after { content: "\2013"; }
   .faq p { margin: 0 0 1rem; font-size: .85rem; color: #94A3B8; line-height: 1.55; }
 </style>
@@ -214,8 +210,8 @@ tailwind.config = { theme: { extend: {
 <div id="splash" aria-hidden="true">
   <div class="sp-glow"></div>
   <svg class="sp-shield" viewBox="0 0 64 64" fill="none">
-    <path pathLength="100" d="M32 4 L56 13 V32 C56 46 46 56 32 61 C18 56 8 46 8 32 V13 Z" stroke="#D4A74F" stroke-width="2.5" stroke-linejoin="round"/>
-    <path class="sp-bolt" d="M35 17 L23 36 H31 L29 47 L41 28 H33 Z" fill="#D4A74F"/>
+    <path pathLength="100" d="M32 4 L56 13 V32 C56 46 46 56 32 61 C18 56 8 46 8 32 V13 Z" stroke="#E0526A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path class="sp-bolt" d="M35 17 L23 36 H31 L29 47 L41 28 H33 Z" fill="#E0526A"/>
   </svg>
   <p class="sp-title"><span>TRIP</span> <span class="g">CONFORT</span></p>
   <div class="sp-line"></div>
@@ -324,7 +320,7 @@ tailwind.config = { theme: { extend: {
         <label for="now-destino" class="block text-sm font-medium text-slate-300 mb-1.5">Destino</label>
         <input id="now-destino" class="field" type="text" placeholder="Para onde você vai?" required>
       </div>
-      <p id="now-err" class="text-sm text-red-300 hidden" role="alert"></p>
+      <p id="now-err" class="text-sm text-orange-300 hidden" role="alert"></p>
       <button type="submit" class="btn-wa w-full rounded-xl py-4 font-bold text-[15px] flex items-center justify-center gap-2.5">
         <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>Consultar Encaixe via WhatsApp
       </button>
@@ -363,7 +359,7 @@ tailwind.config = { theme: { extend: {
       </div>
       <div class="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
         <label class="flex items-start gap-3 cursor-pointer">
-          <input id="ag-espera" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#D4A74F]">
+          <input id="ag-espera" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#E0526A]">
           <span>
             <span class="block text-sm font-semibold text-slate-200">Preciso que o motorista aguarde e volte comigo</span>
             <span class="block text-xs text-slate-400 mt-0.5">Opcional: ida e volta com espera.</span>
@@ -420,29 +416,21 @@ tailwind.config = { theme: { extend: {
         <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00; aeroporto, R$ 70,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Acréscimo de 20% das 22h às 6h e de 25% em datas especiais. Viagens acima de 120 km: taxa de recarga de R$ 30,00. Sinal de 30% (mínimo R$ 20,00) por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
       </div>
 
-      <p id="ag-err" class="text-sm text-red-300 hidden" role="alert"></p>
+      <p id="ag-err" class="text-sm text-orange-300 hidden" role="alert"></p>
       <button type="submit" class="btn-wa w-full rounded-xl py-4 font-bold text-[15px] flex items-center justify-center gap-2.5">
         <i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i>Confirmar e Agendar no WhatsApp
       </button>
     </form>
   </section>
 
-  <!-- ROTAS E SERVIÇOS -->
-  <section class="mt-10 reveal" aria-labelledby="rotas-title">
-    <h2 id="rotas-title" class="font-display text-xl font-bold text-white">Rotas mais procuradas</h2>
-    <p class="text-sm text-slate-400 mt-1">Toque para preencher o destino e ver o valor na hora.</p>
-    <div class="mt-4 grid grid-cols-2 gap-2.5">
-      <button type="button" class="route-chip" data-dest="Aeroporto de Vitória, Vitória, ES"><i class="fa-solid fa-plane-departure" aria-hidden="true"></i><b>Aeroporto (VIX)</b><small id="chip-aero">valor na hora</small></button>
-      <button type="button" class="route-chip" data-dest="Guarapari, ES"><i class="fa-solid fa-umbrella-beach" aria-hidden="true"></i><b>Guarapari</b><small>valor na hora</small></button>
-      <button type="button" class="route-chip" data-dest="Centro, Vitória, ES"><i class="fa-solid fa-city" aria-hidden="true"></i><b>Vitória (Centro)</b><small>valor na hora</small></button>
-      <button type="button" class="route-chip" data-dest="Serra, ES"><i class="fa-solid fa-road" aria-hidden="true"></i><b>Serra</b><small>valor na hora</small></button>
-    </div>
-    <div class="glass rounded-2xl p-4 mt-4">
+  <!-- SERVIÇO À DISPOSIÇÃO -->
+  <section class="mt-10 reveal" aria-label="Motorista à disposição">
+    <div class="glass rounded-2xl p-4">
       <div class="flex items-start gap-4">
         <div class="h-12 w-12 shrink-0 rounded-xl bg-gold/10 text-gold border border-gold/30 flex items-center justify-center text-xl"><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
         <div>
           <h3 class="font-bold text-white">Motorista à disposição</h3>
-          <p class="text-sm text-slate-400 mt-1 leading-snug">Reuniões, eventos e passeios, com o carro e o motorista só para você. <strong class="text-white" id="dispo-txt">R$ 60 por hora, mínimo de 3 horas.</strong></p>
+          <p class="text-sm text-slate-400 mt-1 leading-snug">Reuniões, eventos e passeios, com o carro e o motorista só para você. <strong class="text-white" id="dispo-txt">R$ 70 por hora, mínimo de 3 horas.</strong></p>
         </div>
       </div>
       <button type="button" id="btn-dispo" class="btn-ghost w-full justify-center mt-3"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Consultar no WhatsApp</button>
@@ -509,8 +497,8 @@ tailwind.config = { theme: { extend: {
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
       <svg class="mx-auto h-16 w-16" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <circle class="cf-ring" cx="32" cy="32" r="28" stroke="#D4A74F" stroke-width="3" stroke-linecap="round" transform="rotate(-90 32 32)"/>
-        <path class="cf-tick" d="M20 33 l8 8 l16 -17" stroke="#D4A74F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="cf-ring" cx="32" cy="32" r="28" stroke="#E0526A" stroke-width="3" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+        <path class="cf-tick" d="M20 33 l8 8 l16 -17" stroke="#E0526A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <h2 id="cf-title" tabindex="-1" class="text-2xl font-extrabold text-white mt-4 outline-none">Solicitação pronta</h2>
       <p id="cf-sub" class="text-sm text-slate-300 mt-2 leading-snug"></p>
@@ -528,7 +516,7 @@ tailwind.config = { theme: { extend: {
         <p class="text-xs font-bold tracking-wider text-gold">SINAL PARA GARANTIR A RESERVA</p>
         <p class="mt-1.5 text-sm text-slate-200">Sinal para reservar: <strong id="cf-sinal" class="text-white text-xl"></strong></p>
         <p class="text-xs text-slate-400 mt-1">Chave Pix (CNPJ): <span class="text-slate-200">49.285.098/0001-60</span></p>
-        <button type="button" id="cf-pix-copy" class="mt-3 w-full rounded-xl py-3.5 font-bold text-sm bg-gold text-black hover:brightness-110 flex items-center justify-center gap-2">
+        <button type="button" id="cf-pix-copy" class="mt-3 w-full rounded-xl py-3.5 font-bold text-sm btn-gold-solid hover:brightness-110 flex items-center justify-center gap-2">
           <i class="fa-regular fa-copy" aria-hidden="true"></i>Copiar Pix copia e cola
         </button>
         <button type="button" id="cf-key-copy" class="mt-1.5 w-full text-xs text-slate-300 underline underline-offset-2 py-2">Copiar só a chave</button>
@@ -579,7 +567,7 @@ tailwind.config = { theme: { extend: {
   const ADIC_ESPECIAL = 0.25;        // +25% em datas especiais (edite a lista abaixo, formato AAAA-MM-DD)
   const DATAS_ESPECIAIS = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"];
   const RECARGA_LIMITE_KM = 120, RECARGA_TAXA = 30;   // taxa de recarga em viagens longas (km rodados no total)
-  const DISPONIVEL_HORA = 60, DISPONIVEL_MIN_H = 3;   // motorista à disposição (consulta pelo WhatsApp)
+  const DISPONIVEL_HORA = 70, DISPONIVEL_MIN_H = 3;   // motorista à disposição (consulta pelo WhatsApp)
   const PIX_CHAVE = "49285098000160";           // chave Pix (CNPJ), só dígitos
   const PIX_CHAVE_FMT = "49.285.098/0001-60";
   const PIX_NOME = "TRIP CONFORT";              // até 25 caracteres, sem acento
@@ -742,7 +730,7 @@ tailwind.config = { theme: { extend: {
     if (new Date(`${dv}T${hv}`) < m) {
       const [y, mo, d] = ymd(m).split("-");
       st.textContent = `Agende a partir de ${hm(m)} de ${d}/${mo} (mínimo ${ANTECEDENCIA_H} horas de antecedência).`;
-      st.className = "text-xs min-h-[1rem] -mt-2 text-red-300";
+      st.className = "text-xs min-h-[1rem] -mt-2 text-orange-300";
       $("ag-data").setAttribute("aria-invalid", true); $("ag-hora").setAttribute("aria-invalid", true);
       return false;
     }
@@ -808,7 +796,7 @@ tailwind.config = { theme: { extend: {
   const short = (n) => n.split(",").slice(0, 3).join(",").trim();
   function setSt(f, text, kind) {
     const el = $(f.st); el.textContent = text || "";
-    el.className = "text-xs mt-1.5 min-h-[1rem] " + (kind === "err" ? "text-red-300" : kind === "ok" ? "text-emerald" : "text-slate-400");
+    el.className = "text-xs mt-1.5 min-h-[1rem] " + (kind === "err" ? "text-orange-300" : kind === "ok" ? "text-emerald" : kind === "hint" ? "text-gold" : "text-slate-400");
   }
 
   const espera = { on: false, horas: 1 };
@@ -1221,15 +1209,15 @@ tailwind.config = { theme: { extend: {
         const g = ctx.createRadialGradient(W * 0.85, 0, 0, W * 0.85, 0, 760);
         g.addColorStop(0, "rgba(16,185,129,0)"); g.addColorStop(1, "rgba(16,185,129,0)");
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = "rgba(212,167,79,.55)"; ctx.lineWidth = 2; rr(28, 28, W - 56, H - 56, 40); ctx.stroke();
+        ctx.strokeStyle = "rgba(224,82,106,.55)"; ctx.lineWidth = 2; rr(28, 28, W - 56, H - 56, 40); ctx.stroke();
       }
       let y = 150;
       const w1 = T("TRIP ", PAD, y, 800, 54, "#FFFFFF", "left", "8px");
-      T("CONFORT", PAD + w1, y, 800, 54, "#D4A74F", "left", "8px");
+      T("CONFORT", PAD + w1, y, 800, 54, "#E0526A", "left", "8px");
       y += 48; T("Transporte Executivo, Transfers & Viagens Agendadas", PAD, y, 400, 26, "#94A3B8");
       y += 40;
-      if (paint) { ctx.fillStyle = "rgba(212,167,79,.5)"; ctx.fillRect(PAD, y, IW, 2); }
-      y += 76; T("RESUMO DA SOLICITAÇÃO", PAD, y, 700, 24, "#D4A74F", "left", "4px");
+      if (paint) { ctx.fillStyle = "rgba(224,82,106,.5)"; ctx.fillRect(PAD, y, IW, 2); }
+      y += 76; T("RESUMO DA SOLICITAÇÃO", PAD, y, 700, 24, "#E0526A", "left", "4px");
       y += 78; T(o.proto, PAD, y, 800, 62, "#FFFFFF", "left", "2px");
       y += 74;
 
@@ -1254,8 +1242,8 @@ tailwind.config = { theme: { extend: {
         const vals = o.valores || [];
         const panelTop = y, panelH = 40 + vals.length * 58 + (vals.length ? 26 : 0) + 140;
         if (paint) {
-          ctx.fillStyle = "rgba(212,167,79,.08)"; rr(PAD, panelTop, IW, panelH, 30); ctx.fill();
-          ctx.strokeStyle = "rgba(212,167,79,.5)"; ctx.lineWidth = 2; rr(PAD, panelTop, IW, panelH, 30); ctx.stroke();
+          ctx.fillStyle = "rgba(224,82,106,.08)"; rr(PAD, panelTop, IW, panelH, 30); ctx.fill();
+          ctx.strokeStyle = "rgba(224,82,106,.5)"; ctx.lineWidth = 2; rr(PAD, panelTop, IW, panelH, 30); ctx.stroke();
         }
         let py = panelTop + 40 + 22;
         vals.forEach(([k, v]) => {
@@ -1267,7 +1255,7 @@ tailwind.config = { theme: { extend: {
           py += 58;
         });
         if (vals.length) { if (paint) { ctx.fillStyle = "rgba(255,255,255,.12)"; ctx.fillRect(PAD + 36, py - 30, IW - 72, 2); } py += 4; }
-        T("ESTIMATIVA DO VALOR", PAD + 36, py + 8, 700, 22, "#D4A74F", "left", "3px");
+        T("ESTIMATIVA DO VALOR", PAD + 36, py + 8, 700, 22, "#E0526A", "left", "3px");
         T(o.total || "—", PAD + 36, py + 92, 800, 78, "#FFFFFF");
         y = panelTop + panelH + 48;
       }
@@ -1394,16 +1382,7 @@ tailwind.config = { theme: { extend: {
   })();
 
   // ---- Atalhos de rota e motorista à disposição ----
-  $("chip-aero").textContent = "mínimo " + brl(AEROPORTO.minimo);
   $("dispo-txt").textContent = `${brl(DISPONIVEL_HORA).replace(",00", "")} por hora, mínimo de ${DISPONIVEL_MIN_H} horas.`;
-  document.querySelectorAll(".route-chip").forEach((b) => b.addEventListener("click", () => {
-    selectTab("tab-sched");
-    const f = F.destino, el = $(f.el);
-    el.value = b.dataset.dest; el.removeAttribute("aria-invalid");
-    clearTimeout(f.timer); f.q = ""; f.pt = null; geoField(f);
-    $("agendar").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    if (!$("ag-origem").value.trim()) setTimeout(() => $("ag-origem").focus({ preventScroll: true }), 500);
-  }));
   $("btn-dispo").addEventListener("click", () => openWA([
     "*MOTORISTA À DISPOSIÇÃO*", "Trip Confort", "",
     `Olá! Gostaria de contratar o motorista à disposição por hora (mínimo de ${DISPONIVEL_MIN_H} horas).`, "",
