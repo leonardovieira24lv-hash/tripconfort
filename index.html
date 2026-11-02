@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<style>
+  html, body { background: #000; color: #E2E8F0; margin: 0; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img { max-width: 100%; }
+  .hidden { display: none; }
+  #confirm { position: fixed; inset: 0; z-index: 50; overflow-y: auto; }
+  #confirm.hidden { display: none; }
+  .sticky-cta, #splash { box-sizing: border-box; }
+</style>
 <title>Trip Confort | Transporte Executivo, Transfers & Viagens Agendadas</title>
 <meta name="description" content="Transporte executivo 100% elétrico, transfers e viagens agendadas com pontualidade e conforto VIP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,16 +42,17 @@ tailwind.config = { theme: { extend: {
   }
   .field {
     width: 100%;
-    background: #000;
-    border: 1px solid rgba(255,255,255,.12);
+    background: #1A1A20;
+    border: 1px solid rgba(255,255,255,.22);
     border-radius: .75rem;
     padding: .8rem .95rem;
-    color: #F1F5F9;
+    color: #F8FAFC;
     font-size: 16px; /* evita zoom no iOS */
-    transition: border-color .2s, box-shadow .2s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    transition: border-color .2s, box-shadow .2s, background .2s;
   }
-  .field::placeholder { color: #64748B; }
-  .field:focus { outline: none; border-color: #E0526A; box-shadow: 0 0 0 3px rgba(224,82,106,.22); }
+  .field::placeholder { color: #8A93A3; }
+  .field:focus { background: #202028; outline: none; border-color: #E0526A; box-shadow: 0 0 0 3px rgba(224,82,106,.22); }
   .field[aria-invalid="true"] { border-color: #FB923C; }
   input[type="date"], input[type="time"], select.field { color-scheme: dark; }
   .tab-btn { transition: background .2s, color .2s; }
@@ -94,6 +105,8 @@ tailwind.config = { theme: { extend: {
 
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease-out, transform .7s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
+  .reveal { animation: revealFb .01s linear 6s forwards; }
+  @keyframes revealFb { to { opacity: 1; transform: none; } }
 
   .cf-ring { stroke-dasharray: 176; stroke-dashoffset: 176; animation: draw .8s ease-out .15s forwards; }
   .cf-tick { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw .5s ease-out .8s forwards; }
@@ -193,6 +206,7 @@ tailwind.config = { theme: { extend: {
     transform: translateY(115%); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
   .sticky-cta.show { transform: none; }
   .btn-gold-solid { background: linear-gradient(135deg, #7E1A2E, #C9304F 50%, #7E1A2E); color: #fff; }
+  #ag-origem-st, #ag-destino-st, #gps-msg { margin-top: .3rem !important; min-height: .8rem !important; }
   .sticky-cta .btn-gold { pointer-events: auto; width: 100%; max-width: 26rem; }
 
   .faq { border: 1px solid rgba(255,255,255,.1); border-radius: 1rem; background: rgba(255,255,255,.03); padding: 0 1rem; }
@@ -230,7 +244,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
   <p class="sp-skip">Toque para entrar</p>
 </div>
 <script>tcLogos();</script>
-<script>(function(){var s=document.getElementById("splash");try{if(sessionStorage.getItem("tcSplash")||matchMedia("(prefers-reduced-motion: reduce)").matches){s.remove();return}}catch(e){}document.body.classList.add("splash")})();</script>
+<script>(function(){var s=document.getElementById("splash");try{if(sessionStorage.getItem("tcSplash")||matchMedia("(prefers-reduced-motion: reduce)").matches){s.remove();return}}catch(e){}document.body.classList.add("splash");setTimeout(function(){document.body.classList.remove("splash")},3800)})();</script>
 
 <!-- HEADER -->
 <header class="px-4 pt-[max(1.25rem,env(safe-area-inset-top))] pb-2 max-w-2xl mx-auto">
