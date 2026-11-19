@@ -430,7 +430,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
         </dl>
         <p id="calc-detalhe" class="text-xs text-slate-300 mt-3">Informe origem e destino</p>
         <p id="calc-sinal" class="text-sm font-semibold text-gold mt-1.5 min-h-[1.25rem]"></p>
-        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Acréscimo de 20% das 22h às 6h e de 25% em datas especiais. Viagens acima de 120 km: taxa de recarga de R$ 30,00. Sinal de 30% (mínimo R$ 20,00) por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
+        <p class="text-[11px] text-slate-500 mt-2 leading-snug">Corrida: R$ 2,80/km (mínimo R$ 50,00). Deslocamento e retorno: grátis até 8 km do nosso ponto-base; acima disso, R$ 1,40/km (retorno a 50%). Acréscimo de 20% das 22h às 6h e de 25% em datas especiais. Acima de 250 km rodados no total, taxa de recarga de R$ 100,00 por parada necessária (pedágios e pernoite não estão incluídos). Sinal de 30% (mínimo R$ 20,00) por Pix para reservar, devolvido em cancelamentos feitos até 24 horas antes (depois disso fica retido, pois reserva o seu horário). Valor estimado, confirmado pelo motorista no WhatsApp. Rotas com dados &copy; colaboradores do OpenStreetMap.</p>
       </div>
 
       <p id="ag-err" class="text-sm text-orange-300 hidden" role="alert"></p>
@@ -447,7 +447,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
         <div class="h-12 w-12 shrink-0 rounded-xl bg-gold/10 text-gold border border-gold/30 flex items-center justify-center text-xl"><i class="fa-regular fa-clock" aria-hidden="true"></i></div>
         <div>
           <h3 class="font-bold text-white">Motorista à disposição</h3>
-          <p class="text-sm text-slate-400 mt-1 leading-snug">Reuniões, eventos e passeios, com o carro e o motorista só para você. <strong class="text-white" id="dispo-txt">R$ 70 por hora, mínimo de 3 horas.</strong></p>
+          <p class="text-sm text-slate-400 mt-1 leading-snug">Reuniões, eventos e passeios, com o carro e o motorista só para você. <strong class="text-white" id="dispo-txt">R$ 100 por hora, mínimo de 3 horas.</strong></p>
         </div>
       </div>
       <button type="button" id="btn-dispo" class="btn-ghost w-full justify-center mt-3"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Consultar no WhatsApp</button>
@@ -486,7 +486,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
       <details class="faq"><summary>O motorista pode esperar e voltar comigo?</summary><p>Sim, na opção de ida e volta com espera: espera mínima de 1 hora, a R$ 50,00 por hora, e a volta tem o mesmo valor da ida. Esperas acima de 4 horas são sob consulta.</p></details>
       <details class="faq"><summary>Quantos passageiros e malas cabem?</summary><p>O BYD Dolphin GS leva até 3 passageiros e 2 malas com conforto. Se tiver mais bagagem ou criança, avise nas observações.</p></details>
       <details class="faq"><summary>Quais são as formas de pagamento?</summary><p>O sinal é pago por Pix. O restante pode ser pago por Pix, cartão de crédito ou débito.</p></details>
-      <details class="faq"><summary>Vocês fazem viagens longas?</summary><p>Sim, com o valor calculado automaticamente. Em viagens acima de 120 km há uma taxa de recarga de R$ 30,00.</p></details>
+      <details class="faq"><summary>Vocês fazem viagens longas?</summary><p>Sim, com o valor calculado automaticamente. Acima de 250 km rodados no total (contando o deslocamento e a volta), há uma taxa de recarga de R$ 100,00 por parada de recarga rápida necessária. Pedágios, estacionamento e pernoite não estão incluídos e são combinados com o motorista.</p></details>
     </div>
   </section>
 </main>
@@ -582,8 +582,11 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
   const ADIC_NOTURNO = 0.20, NOITE_INI = 22, NOITE_FIM = 6;                    // +20% das 22h às 5h59
   const ADIC_ESPECIAL = 0.25;        // +25% em datas especiais (edite a lista abaixo, formato AAAA-MM-DD)
   const DATAS_ESPECIAIS = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09"];
-  const RECARGA_LIMITE_KM = 120, RECARGA_TAXA = 30;   // taxa de recarga em viagens longas (km rodados no total)
-  const DISPONIVEL_HORA = 70, DISPONIVEL_MIN_H = 3;   // motorista à disposição (consulta pelo WhatsApp)
+  const AUTONOMIA_KM = 250;          // km que o carro faz por carga (saindo carregado de casa); ajuste ao seu consumo real
+  const RECARGA_KM_PARADA = 200;     // km ganhos a cada recarga rápida na estrada
+  const RECARGA_TAXA = 100;          // R$ por parada de recarga rápida (energia + tempo parado)
+  const LONGA_KM = 400;              // acima disso, avisa sobre pedágios e pernoite
+  const DISPONIVEL_HORA = 100, DISPONIVEL_MIN_H = 3, DISPONIVEL_KM_HORA = 15;   // motorista à disposição (consulta pelo WhatsApp)
   const PIX_CHAVE = "49285098000160";           // chave Pix (CNPJ), só dígitos
   const PIX_CHAVE_FMT = "49.285.098/0001-60";
   const PIX_NOME = "TRIP CONFORT";              // até 25 caracteres, sem acento
@@ -840,10 +843,11 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
     const ad = adicionalPerc();
     const adicional = Math.round((ida + volta) * ad.perc * 100) / 100;
     const kmTotal = espera.on ? route.desl * 2 + route.km * 2 : route.desl + route.km + route.ret;
-    const recarga = kmTotal > RECARGA_LIMITE_KM ? RECARGA_TAXA : 0;
+    const paradas = kmTotal > AUTONOMIA_KM ? Math.ceil((kmTotal - AUTONOMIA_KM) / RECARGA_KM_PARADA) : 0;
+    const recarga = paradas * RECARGA_TAXA;
     const total = Math.round((ida + volta + esp + desl + ret + adicional + recarga) * 100) / 100;
     const sinal = Math.min(total, Math.max(Math.round(total * SINAL_PERC * 100) / 100, SINAL_MIN));
-    return { corrida: ida, volta, esp, deslExc, retExc, desl, ret, adicional, adNome: ad.nome, adPerc: ad.perc, recarga, minimo, total, sinal };
+    return { corrida: ida, volta, esp, deslExc, retExc, desl, ret, adicional, adNome: ad.nome, adPerc: ad.perc, recarga, paradas, kmTotal, minimo, total, sinal };
   }
   const precoFinal = () => (route.ok && !sobConsulta() ? calcPreco().total : null);
   $("ag-espera").addEventListener("change", () => {
@@ -865,7 +869,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
       $("t-corrida").textContent = isMin ? `${nome} (valor mínimo)` : `${nome} (${n1(route.km)} km × R$ 2,80)`;
       $("r-adic").classList.toggle("hidden", !(p.adicional > 0)); $("r-rec").classList.toggle("hidden", !(p.recarga > 0));
       if (p.adicional > 0) { $("t-adic").textContent = `${p.adNome} (+${Math.round(p.adPerc * 100)}%)`; $("v-adic").textContent = brl(p.adicional); }
-      if (p.recarga > 0) $("v-rec").textContent = brl(p.recarga);
+      if (p.recarga > 0) { $("t-rec").textContent = `Recarga (${p.paradas} ${p.paradas > 1 ? "paradas" : "parada"} rápida${p.paradas > 1 ? "s" : ""})`; $("v-rec").textContent = brl(p.recarga); }
       $("r-volta").classList.toggle("hidden", !espera.on); $("r-esp").classList.toggle("hidden", !espera.on);
       if (espera.on) {
         $("t-volta").textContent = "Volta (mesmo valor da ida)"; $("v-volta").textContent = brl(p.volta);
@@ -877,7 +881,7 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
       $("v-desl").textContent = p.desl > 0 ? brl(p.desl) : "Incluso";
       $("t-ret").textContent = p.retExc > 0 ? `Retorno (${n1(p.retExc)} km além do raio, 50%)` : "Retorno";
       $("v-ret").textContent = p.ret > 0 ? brl(p.ret) : "Incluso";
-      $("calc-detalhe").textContent = "Rota calculada automaticamente pelos endereços informados.";
+      $("calc-detalhe").textContent = p.kmTotal > LONGA_KM ? "Viagem longa: pedágios, estacionamento e pernoite não estão incluídos. O motorista confirma tudo pelo WhatsApp." : "Rota calculada automaticamente pelos endereços informados.";
       setValor(p.total);
       return;
     }
@@ -1046,7 +1050,8 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
         ? [`Ida: ${brl2(p.corrida)}`, `Volta: ${brl2(p.volta)}`, `Espera (${fmtH(espera.horas)}): ${brl2(p.esp)}`]
         : [`Corrida${route.km * TARIFA_KM < p.minimo ? " (mínimo)" : ""}: ${brl2(p.corrida)}`];
       if (p.adicional > 0) vals.push(`${p.adNome} (+${Math.round(p.adPerc * 100)}%): ${brl2(p.adicional)}`);
-      if (p.recarga > 0) vals.push(`Recarga (viagem longa): ${brl2(p.recarga)}`);
+      if (p.recarga > 0) vals.push(`Recarga (${p.paradas} ${p.paradas > 1 ? "paradas" : "parada"}): ${brl2(p.recarga)}`);
+      if (p.kmTotal > LONGA_KM) vals.push("Obs.: pedágios e pernoite a combinar");
       linhas.push(
         "*VALORES*", ...vals,
         `Deslocamento: ${p.desl > 0 ? brl2(p.desl) : "Incluso"}`,
@@ -1397,10 +1402,10 @@ window.tcLogos=function(){document.querySelectorAll("img[data-logo]").forEach(fu
   })();
 
   // ---- Atalhos de rota e motorista à disposição ----
-  $("dispo-txt").textContent = `${brl(DISPONIVEL_HORA).replace(",00", "")} por hora, mínimo de ${DISPONIVEL_MIN_H} horas.`;
+  $("dispo-txt").textContent = `${brl(DISPONIVEL_HORA).replace(",00", "")} por hora, mínimo de ${DISPONIVEL_MIN_H} horas, com ${DISPONIVEL_KM_HORA} km por hora incluídos (excedente a ${brl(TARIFA_KM)}/km).`;
   $("btn-dispo").addEventListener("click", () => openWA([
     "*MOTORISTA À DISPOSIÇÃO*", "Trip Confort", "",
-    `Olá! Gostaria de contratar o motorista à disposição por hora (mínimo de ${DISPONIVEL_MIN_H} horas).`, "",
+    `Olá! Gostaria de contratar o motorista à disposição por hora (mínimo de ${DISPONIVEL_MIN_H} horas, ${DISPONIVEL_KM_HORA} km por hora incluídos).`, "",
     "*DATA E HORÁRIO*", "(a combinar)", "",
     "Poderia confirmar a disponibilidade e o valor?"
   ].join("\n")));
